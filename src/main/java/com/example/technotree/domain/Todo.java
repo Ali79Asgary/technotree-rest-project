@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ToDo {
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,16 +15,16 @@ public class ToDo {
     private String title;
     private Boolean completed;
 
-    public ToDo() {
+    public Todo() {
     }
 
-    public ToDo(Long userId, String title, Boolean completed) {
+    public Todo(Long userId, String title, Boolean completed) {
         this.userId = userId;
         this.title = title;
         this.completed = completed;
     }
 
-    public ToDo(Long id, Long userId, String title, Boolean completed) {
+    public Todo(Long id, Long userId, String title, Boolean completed) {
         this.id = id;
         this.userId = userId;
         this.title = title;
