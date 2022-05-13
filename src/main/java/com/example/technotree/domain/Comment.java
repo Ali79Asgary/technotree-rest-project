@@ -1,7 +1,6 @@
 package com.example.technotree.domain;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Comment {
@@ -9,29 +8,26 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long postId;
     private String name;
     private String email;
     private String body;
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
     private Post post;
 
     public Comment() {
     }
 
-    public Comment(Long postId, String name, String email, String body, Post post) {
-        this.postId = postId;
+    public Comment(String name, String email, String body, Post post) {
+
         this.name = name;
         this.email = email;
         this.body = body;
         this.post = post;
     }
 
-    public Comment(Long id, Long postId, String name, String email, String body, Post post) {
+    public Comment(Long id, String name, String email, String body, Post post) {
         this.id = id;
-        this.postId = postId;
         this.name = name;
         this.email = email;
         this.body = body;
@@ -44,14 +40,6 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPostId() {
-        return postId;
-    }
-
-    public void setPostId(Long postId) {
-        this.postId = postId;
     }
 
     public String getName() {
@@ -90,7 +78,6 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", postId=" + postId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", body='" + body + '\'' +

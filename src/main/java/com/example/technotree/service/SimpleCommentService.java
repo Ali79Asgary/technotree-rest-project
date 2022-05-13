@@ -63,27 +63,26 @@ public class SimpleCommentService implements CommentService {
 
     @Override
     public Comment patchCommentById(Comment newComment, Long id) {
-        log.info("going to patch a comment by id : " + id);
+        log.info("going to patch a comment by id : "+id);
         return commentRepository.findById(id).map(comment -> {
-            comment.setPostId(newComment.getPostId());
             comment.setName(newComment.getName());
             comment.setEmail(newComment.getEmail());
             comment.setBody(newComment.getBody());
             comment.setPost(newComment.getPost());
             return commentRepository.save(comment);
         }).orElseThrow(() -> {
-            log.warn("no comment exist by id : " + id);
+            log.warn("no comment exist by id : "+id);
             throw new CommentNotFoundException();
         });
     }
 
     @Override
     public void deleteCommentById(Long id) {
-        log.info("going to delete a comment by id : " + id);
+        log.info("going to delete a comment by id : "+id);
         if (commentRepository.existsById(id)) {
             commentRepository.deleteById(id);
         } else {
-            log.warn("no comment exist by id : " + id);
+            log.warn("no comment exist by id : "+id);
             throw new CommentNotFoundException();
         }
     }
