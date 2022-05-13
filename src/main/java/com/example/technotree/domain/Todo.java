@@ -1,37 +1,34 @@
 package com.example.technotree.domain;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Post {
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
     private String title;
-    private String body;
+    private Boolean completed;
 
-    @OneToMany
-    private List<Comment> comments;
-
-    public Post() {
+    public Todo() {
     }
 
-    public Post(Long userId, String title, String body, List<Comment> comments) {
+    public Todo(Long userId, String title, Boolean completed) {
         this.userId = userId;
         this.title = title;
-        this.body = body;
-        this.comments = comments;
+        this.completed = completed;
     }
 
-    public Post(Long id, Long userId, String title, String body, List<Comment> comments) {
+    public Todo(Long id, Long userId, String title, Boolean completed) {
         this.id = id;
         this.userId = userId;
         this.title = title;
-        this.body = body;
-        this.comments = comments;
+        this.completed = completed;
     }
 
     public Long getId() {
@@ -58,30 +55,21 @@ public class Post {
         this.title = title;
     }
 
-    public String getBody() {
-        return body;
+    public Boolean getCompleted() {
+        return completed;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "ToDo{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", comments=" + comments +
+                ", completed=" + completed +
                 '}';
     }
 }
